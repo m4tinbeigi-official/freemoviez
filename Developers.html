@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fa" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرفی توسعه‌دهندگان - فیری مووی</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@latest/dist/font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Vazir', sans-serif; direction: rtl; }
+        .skeleton { background: #333; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gray-800 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="https://m4tinbeigi-official.github.io/freemovie/">
+                    <img src="logo.png" alt="لوگو" class="h-10 mr-2">
+                </a>
+                <h1 href="https://m4tinbeigi-official.github.io/freemovie/" class="text-xl font-bold">فیری مووی</h1>
+            </div>
+            <nav class="hidden md:flex space-x-4 space-x-reverse">
+                <a href="/freemovie" class="hover:text-gray-300">خانه</a>
+                <a href="/freemovie/search/index.html" class="hover:text-gray-300">جستجو</a>
+                <a href="/freemovie/watchlist/index.html" class="hover:text-gray-300">واچ لیست</a>
+                <button id="theme-toggle" class="hover:text-gray-300"><i class="fas fa-sun"></i></button>
+            </nav>
+            <button class="md:hidden" id="menu-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-700 p-4">
+            <a href="/freemovie" class="block py-2 hover:text-gray-300">خانه</a>
+            <a href="/freemovie/search/index.html" class="block py-2 hover:text-gray-300">جستجو</a>
+            <a href="/freemovie/watchlist/index.html" class="block py-2 hover:text-gray-300">واچ لیست</a>
+        </div>
+    </header>
+
+    <!-- Developers Section -->
+    <section class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-8 text-center">معرفی توسعه‌دهندگان</h2>
+        <div id="developers" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 m-4">
+            <!-- Developer cards will be populated here -->
+            <div class="skeleton w-full h-64"></div>
+            <div class="skeleton w-full h-64"></div>
+            <div class="skeleton w-full h-64"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 p-4 mt-auto">
+        <div class="container mx-auto text-center">
+            <p>
+                فیری مووی - ساخته شده توسط 
+                <a href="https://example.com/m4tinbeigi" class="hover:text-gray-300">ریک سانچز</a> و 
+                <a href="https://example.com/armin_np_" class="hover:text-gray-300">ارمین جوان</a> با 🤍 | 
+                استفاده از فونت 
+                <a href="https://rastikerdar.github.io/vazir-font/" class="hover:text-gray-300">وزیر</a> به یاد 
+                <a href="https://example.com/saber-rastikerdar" class="hover:text-gray-300">صابر راستی کردار</a><br>
+                در این وبسایت از وب سرویس 
+                <a href="https://www.omdbapi.com/" class="hover:text-gray-300">OMDB</a> و 
+                <a href="https://www.themoviedb.org/" class="hover:text-gray-300">TMDB</a> برای جستجو و اطلاعات فیلم‌ها و از 
+                <a href="https://almasmovie.website/" class="hover:text-gray-300">الماس مووی</a> برای دانلود فیلم‌ها استفاده می‌شود.
+            </p>
+            <div class="social-icons mb-2">
+                <a class="github-button" href="https://github.com/m4tinbeigi-official/freemovie" data-icon="octicon-star" data-show-count="true" aria-label="Star m4tinbeigi-official/freemovie on GitHub">Star</a>
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript to Fetch GitHub Data -->
+    <script>
+        async function fetchDevelopers() {
+            const developers = ['m4tinbeigi-official', 'arminJavaan']; // نام‌های کاربری توسعه‌دهندگان
+            const developersContainer = document.getElementById('developers');
+            developersContainer.innerHTML = ''; // حذف اسکلتون‌ها
+
+            for (const username of developers) {
+                try {
+                    const response = await fetch(`https://api.github.com/users/${username}`);
+                    if (!response.ok) throw new Error('خطا در دریافت اطلاعات');
+                    const data = await response.json();
+
+                    const developerCard = `
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                            <img src="${data.avatar_url}" alt="${data.login}" class="w-24 h-24 rounded-full mx-auto">
+                            <h3 class="text-lg font-bold mt-4">${data.name || data.login}</h3>
+                            <p class="text-sm">${data.bio || 'بدون بیوگرافی'}</p>
+                            <p class="text-sm mt-2">مخازن عمومی: ${data.public_repos}</p>
+                            <a href="${data.html_url}" target="_blank" class="text-blue-400 hover:text-blue-300 mt-2 inline-block">پروفایل گیت‌هاب</a>
+                        </div>
+                    `;
+                    developersContainer.innerHTML += developerCard;
+                } catch (error) {
+                    console.error(`خطا برای ${username}:`, error);
+                    developersContainer.innerHTML += `
+                        <div class="bg-gray-800 p-4 rounded-lg shadow-md">
+                            <p class="text-red-400">خطا در بارگذاری اطلاعات ${username}</p>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // اجرای تابع هنگام بارگذاری صفحه
+        window.onload = fetchDevelopers;
+    </script>
+</body>
+</html>

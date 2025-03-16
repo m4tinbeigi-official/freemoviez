@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فیری موویز - واچ لیست</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@latest/dist/font-face.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="/fav/favicon.ico" type="favicon/ico">
+    <script src="https://cdn.counter.dev/script.js" data-id="42aac39f-23a3-416e-a788-12c3bafefb62" data-utcoffset="4"></script>
+    <style>
+        body { font-family: 'Vazir', sans-serif; direction: rtl; }
+        .skeleton { background: #333; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="bg-gray-800 p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="https://m4tinbeigi-official.github.io/freemovie/">
+                    <img src="/logo.png" alt="لوگو" class="h-10 mr-2">
+                </a>
+                <h1 href="https://m4tinbeigi-official.github.io/freemovie/" class="text-xl font-bold">فیری موویز</h1>
+            </div>
+            <nav class="hidden md:flex space-x-4 space-x-reverse">
+                <a href="/index.html" class="hover:text-gray-300">خانه</a>
+                <a href="/search/index.html" class="hover:text-gray-300">جستجو</a>
+                <a href="/watchlist/index.html" class="hover:text-gray-300">واچ لیست</a>
+                <button id="theme-toggle" class="hover:text-gray-300"><i class="fas fa-sun"></i></button>
+                </nav>
+                <button class="md:hidden" id="menu-toggle"><i class="fas fa-bars"></i></button>
+                </div>
+                <div id="mobile-menu" class="hidden md:hidden bg-gray-700 p-4 mt-2">
+                    <a href="/index.html" class="block py-2 hover:text-gray-300">خانه</a>
+                    <a href="/search/index.html" class="block py-2 hover:text-gray-300">جستجو</a>
+                    <a href="/watchlist/index.html" class="block py-2 hover:text-gray-300">واچ لیست</a>
+            </div>
+    </header>
+
+    <!-- Watchlist Section -->
+<section class="container mx-auto py-8">
+    <h2 class="text-2xl font-bold mb-8 text-center">واچ لیست شما</h2>
+    <h3 class="text-xl font-bold mb-4 text-center">فیلم‌ها</h3>
+    <div id="movies-watchlist" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 m-4">
+        <div class="skeleton w-full h-64"></div>
+    </div>
+    <h3 class="text-xl font-bold mb-4 text-center">سریال‌ها</h3>
+    <div id="series-watchlist" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 m-4">
+        <div class="skeleton w-full h-64"></div>
+    </div>
+    <div id="empty-watchlist" class="text-center hidden">
+        <p class="text-lg">واچ لیست شما خالی است. لطفاً فیلم‌هایی را از صفحه جستجو یا جزئیات فیلم به واچ لیست اضافه کنید.</p>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 p-4 mt-auto">
+        <div class="container mx-auto text-center">
+            <p>
+                فیری مووی - ساخته شده توسط 
+                <a href="https://x.com/m4tinbeigi" class="hover:text-gray-300">ریک سانچز</a> و 
+                <a href="https://x.com/armin_np_" class="hover:text-gray-300">ارمین جوان</a> با 🤍 | 
+                استفاده از فونت 
+                <a href="https://rastikerdar.github.io/vazir-font/" class="hover:text-gray-300">وزیر</a> به یاد 
+                <a href="https://example.com/saber-rastikerdar" class="hover:text-gray-300">صابر راستی کردار</a><br>
+                در این وبسایت از وب سرویس 
+                <a href="https://www.omdbapi.com/" class="hover:text-gray-300">OMDB</a> و 
+                <a href="https://www.themoviedb.org/" class="hover:text-gray-300">TMDB</a> برای جستجو و اطلاعات فیلم‌ها و از 
+                <a href="https://almasmovie.website/" class="hover:text-gray-300">الماس مووی</a> برای دانلود فیلم‌ها استفاده می‌شود.
+            </p>
+            <div class="social-icons mb-2">
+                <a class="github-button" href="https://github.com/m4tinbeigi-official/freemovie" data-icon="octicon-star" data-show-count="true" aria-label="Star m4tinbeigi-official/freemovie on GitHub">Star</a>
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
+            </div>
+        </div>
+    </footer>
+
+    <script src="watchlist.js"></script>
+</body>
+</html>
